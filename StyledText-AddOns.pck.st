@@ -1,8 +1,8 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3068] on 25 March 2017 at 1:02:15 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3071] on 29 March 2017 at 3:22:29 pm'!
 'Description I add user interface elements for StyleSet, ParagraphStyles and CharacterStyles for a StyledTextEditor.'!
 !provides: 'StyledText-AddOns' 1 0!
-!requires: 'Morph-MetaProperties' 1 59 nil!
 !requires: 'StyledTextInstaller' 1 6 nil!
+!requires: 'Morph-MetaProperties' 1 59 nil!
 !classDefinition: #CharacterStyleEditor category: #'StyledText-AddOns'!
 MenuMorph subclass: #CharacterStyleEditor
 	instanceVariableNames: 'styledTextModel targetStyle styleName styleShortcut textFont textEmphasis textColor'
@@ -91,7 +91,7 @@ aboutToGrab: aMorph
 	ifFalse: [ ^ valueToDrag morphForDrag ]
 ! !
 
-!CharacterStyleEditor methodsFor: 'events-processing' stamp: 'KenD 3/24/2017 14:50:15'!
+!CharacterStyleEditor methodsFor: 'events-processing' stamp: 'KenD 3/29/2017 15:11:38'!
 accept
 
 	| resultStyle styleIndex styleSet |
@@ -109,8 +109,8 @@ accept
 		resultStyle := self targetStyle.
 		styleIndex := styleSet characterStyleIndexOf: resultStyle.
 		self copyValuesToStyle: resultStyle.
-		(self styleShortcut = ((styleSet characterStyleOrNilAt: styleIndex) at: 1))
-		ifFalse: [ (styleSet characterStyleOrNilAt: styleIndex) at: 1 put: self styleShortcut ].
+		(self styleShortcut = ((styleSet characterStyles at: styleIndex) at: 1))
+		ifFalse: [ (styleSet characterStyles at: styleIndex) at: 1 put: self styleShortcut ].
 		styleSet triggerEvent: #stylesChanged
 	].
 	self delete
@@ -300,12 +300,12 @@ styledTextModel: aStyledTextModel
 
 	styledTextModel := aStyledTextModel ! !
 
-!CharacterStyleEditor methodsFor: 'initialization' stamp: 'KenD 3/24/2017 15:29:46'!
+!CharacterStyleEditor methodsFor: 'initialization' stamp: 'KenD 3/29/2017 15:06:56'!
 styledTextModel: aStyledTextModel  shortcutChar: aChar charStyle: aCharStyle
 
 	super initialize.
 	self styledTextModel: aStyledTextModel.
-	self styleShortcut: aChar.
+	styleShortcut := aChar.
 	self targetStyle: aCharStyle.
 	self copyValuesFromStyle: aCharStyle.
 	self buildMenuItems; refreshView ! !
