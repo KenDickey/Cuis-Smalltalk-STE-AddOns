@@ -1,4 +1,4 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3071] on 29 March 2017 at 3:22:29 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3075] on 2 April 2017 at 2:59:07 pm'!
 'Description I add user interface elements for StyleSet, ParagraphStyles and CharacterStyles for a StyledTextEditor.'!
 !provides: 'StyledText-AddOns' 1 0!
 !requires: 'StyledTextInstaller' 1 6 nil!
@@ -15,8 +15,8 @@ CharacterStyleEditor class
 
 !classDefinition: #ParagraphStyleEditor category: #'StyledText-AddOns'!
 CharacterStyleEditor subclass: #ParagraphStyleEditor
-	instanceVariableNames: ''
-	classVariableNames: ''
+	instanceVariableNames: 'paragraphAlignment firstLineIndent restLinesIndent rightLineIndent verticalSpaceBefore verticalSpaceAfter bulletPatternString'
+	classVariableNames: 'ParagraphMetaProps'
 	poolDictionaries: ''
 	category: 'StyledText-AddOns'!
 !classDefinition: 'ParagraphStyleEditor class' category: #'StyledText-AddOns'!
@@ -40,7 +40,20 @@ I am a user interface for creating or editing a CharacterStyle for a StyleSet.
 I require a valid StyledTextModel to update when editing is accepted.!
 
 !ParagraphStyleEditor commentStamp: '<historical>' prior: 0!
-I am a user interface for managing a ParagraphStyle for a StyleSet!
+I am a user interface for managing a ParagraphStyle for a StyleSet.
+
+I am also a character style but add a number of editable values.
+
+paragraphAlignment -- leftFlush, centered, rightFlush
+firstLineIndent restLinesIndent rightLineIndent -- pixel indentation of paragraph lines
+verticalSpaceBefore verticalSpaceAfter --
+bulletPatternString -- patterm used for bullits
+  '%.'  --> '1.'  '2.'  '3.'  ...
+  'z)'  --> 'a)'  'b)'  'c)' ...
+  'Z-' --> 'A-'  'B-'  'C-'  ...
+  '° ' --> '° '  '° '  '° '  ...
+   ...
+!
 
 !StyleSetEditor commentStamp: '<historical>' prior: 0!
 I am a user interface for managing a StyleSet for a StyledTextEditor!
@@ -91,7 +104,7 @@ aboutToGrab: aMorph
 	ifFalse: [ ^ valueToDrag morphForDrag ]
 ! !
 
-!CharacterStyleEditor methodsFor: 'events-processing' stamp: 'KenD 3/29/2017 15:11:38'!
+!CharacterStyleEditor methodsFor: 'events-processing' stamp: 'KenD 4/2/2017 14:58:20'!
 accept
 
 	| resultStyle styleIndex styleSet |
