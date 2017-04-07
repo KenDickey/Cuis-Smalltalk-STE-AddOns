@@ -1,5 +1,5 @@
-STE-Addons
-==========
+StyledTextAddOns
+================
 
 ### Adds StyleSet Editing to the Cuis StyledTextEditor
 
