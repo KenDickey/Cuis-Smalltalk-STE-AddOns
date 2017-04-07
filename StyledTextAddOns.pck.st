@@ -1,35 +1,35 @@
 'From Cuis 5.0 of 7 November 2016 [latest update: #3075] on 2 April 2017 at 2:59:07 pm'!
 'Description I add user interface elements for StyleSet, ParagraphStyles and CharacterStyles for a StyledTextEditor.'!
-!provides: 'StyledText-AddOns' 1 0!
+!provides: 'StyledTextAddOns' 1 0!
 !requires: 'StyledTextInstaller' 1 6 nil!
 !requires: 'Morph-MetaProperties' 1 59 nil!
-!classDefinition: #CharacterStyleEditor category: #'StyledText-AddOns'!
+!classDefinition: #CharacterStyleEditor category: #'StyledTextAddOns'!
 MenuMorph subclass: #CharacterStyleEditor
 	instanceVariableNames: 'styledTextModel targetStyle styleName styleShortcut textFont textEmphasis textColor'
 	classVariableNames: 'CharSetMetaProps'
 	poolDictionaries: ''
-	category: 'StyledText-AddOns'!
-!classDefinition: 'CharacterStyleEditor class' category: #'StyledText-AddOns'!
+	category: 'StyledTextAddOns'!
+!classDefinition: 'CharacterStyleEditor class' category: #'StyledTextAddOns'!
 CharacterStyleEditor class
 	instanceVariableNames: ''!
 
-!classDefinition: #ParagraphStyleEditor category: #'StyledText-AddOns'!
+!classDefinition: #ParagraphStyleEditor category: #'StyledTextAddOns'!
 CharacterStyleEditor subclass: #ParagraphStyleEditor
 	instanceVariableNames: 'paragraphAlignment firstLineIndent restLinesIndent rightLineIndent verticalSpaceBefore verticalSpaceAfter bulletPatternString'
 	classVariableNames: 'ParagraphMetaProps'
 	poolDictionaries: ''
-	category: 'StyledText-AddOns'!
-!classDefinition: 'ParagraphStyleEditor class' category: #'StyledText-AddOns'!
+	category: 'StyledTextAddOns'!
+!classDefinition: 'ParagraphStyleEditor class' category: #'StyledTextAddOns'!
 ParagraphStyleEditor class
 	instanceVariableNames: ''!
 
-!classDefinition: #StyleSetEditor category: #'StyledText-AddOns'!
+!classDefinition: #StyleSetEditor category: #'StyledTextAddOns'!
 MenuMorph subclass: #StyleSetEditor
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'StyledText-AddOns'!
-!classDefinition: 'StyleSetEditor class' category: #'StyledText-AddOns'!
+	category: 'StyledTextAddOns'!
+!classDefinition: 'StyleSetEditor class' category: #'StyledTextAddOns'!
 StyleSetEditor class
 	instanceVariableNames: ''!
 
@@ -58,28 +58,28 @@ bulletPatternString -- patterm used for bullits
 !StyleSetEditor commentStamp: '<historical>' prior: 0!
 I am a user interface for managing a StyleSet for a StyledTextEditor!
 
-!StyleSet methodsFor: '*styledtext-addons' stamp: 'KenD 3/24/2017 14:37:37'!
+!StyleSet methodsFor: '*styledtextaddons' stamp: 'KenD 3/24/2017 14:37:37'!
 addCharStyle: aCharacterStyle withShortcut: aChar
 
 	characterStyles := characterStyles , { {aChar. aCharacterStyle.} }.
 	
 	self triggerEvent: #stylesChanged! !
 
-!CharacterStyle methodsFor: '*styledtext-addons' stamp: 'KenD 3/24/2017 14:07:03'!
+!CharacterStyle methodsFor: '*styledtextaddons' stamp: 'KenD 3/24/2017 14:07:03'!
 privateColor: aColor
 
 	color := aColor
 
 	! !
 
-!CharacterStyle methodsFor: '*styledtext-addons' stamp: 'KenD 3/24/2017 14:12:46'!
+!CharacterStyle methodsFor: '*styledtextaddons' stamp: 'KenD 3/24/2017 14:12:46'!
 privateEmphasis: emphasisCode
 
 	emphasis := emphasisCode 
 
 	! !
 
-!CharacterStyle methodsFor: '*styledtext-addons' stamp: 'KenD 3/24/2017 14:04:13'!
+!CharacterStyle methodsFor: '*styledtextaddons' stamp: 'KenD 3/24/2017 14:04:13'!
 privateFamilyName: aString
 
 	familyName := aString "Font familyName"

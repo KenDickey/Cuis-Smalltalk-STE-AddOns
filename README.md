@@ -9,7 +9,7 @@ STE-Addons
 To load the package in Cuis 5.0
 
 ````Smalltalk
-	Feature require: 'StyledText-AddOns'.
+	Feature require: 'StyledTextAddOns'.
 ````
 
 ### IN PROGRESS -- NOT YET RELEASED !!
